@@ -59,6 +59,16 @@ SLES           SUSE                    12-SP2              SUSE:SLES:12-SP2:late
 Debian         credativ                8                   credativ:Debian:8:latest                                        Debian               latest
 CoreOS         CoreOS                  Stable              CoreOS:CoreOS:Stable:latest                                     CoreOS               latest
 
+az group create --name ubuntu-rg --location southeastasia
+
+az vm create \
+    --resource-group ubuntu-rg \
+    --name ubuntuVM1 \
+    --location southeastasia \
+    --image UbuntuLTS \
+    --ssh-key-value ~/.ssh/id_rsa.pub \
+    --admin-username azureuser
+
 </pre>
 
 https://github.com/Azure/azure-cli<br>
