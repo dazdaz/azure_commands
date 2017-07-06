@@ -1,15 +1,19 @@
 # azure-cli2-commands
 
 <pre>
-7th July 2017
-az 2.0.9 is the latest
+7th July 2017 - az 2.0.9 is the latest
+
+# Installing az
 curl -L https://aka.ms/InstallAzureCli | bash
+
+# Or run az from a container (did'nt work when last tested due to Python dependency's)
+docker run -v ${HOME}:/root -it azuresdk/azure-cli-python:latest
 
 
 $ az group list | grep '"name":'
     "name": "my-rg",
 
-$ az vm list --show-details -d | egrep '(powerState|offer|sku|vmName|resourceGroupName|Ips)'
+$ az vm list --show-details -d --output jsonc | egrep '(powerState|offer|sku|vmName|resourceGroupName|Ips)'
     "powerState": "VM running",
     "privateIps": "10.200.200.5",
     "publicIps": "",
