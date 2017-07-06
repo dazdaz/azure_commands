@@ -1,5 +1,6 @@
 # azure-cli2-commands
 
+<pre>
 $ az group list | grep '"name":'
     "name": "my-rg",
 
@@ -21,3 +22,4 @@ $ az vm restart --resource-group myrg --name "k8s-agent-6F3AE52A-2"
   "status": "Succeeded"
 }
 
+</pre>
