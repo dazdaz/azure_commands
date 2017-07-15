@@ -1,10 +1,14 @@
 # azure-cli2-commands
 
 <pre>
-7th July 2017 - az 2.0.9 is the latest
+15th July 2017 - az 2.10 is the latest
 
 # Installing az
 curl -L https://aka.ms/InstallAzureCli | bash
+
+$ azure login
+$ azure account set "<SUBSCRIPTION NAME OR ID>"
+$ azure config mode arm
 
 # Or run az from a container (did'nt work when last tested due to Python dependency's)
 docker run -v ${HOME}:/root -it azuresdk/azure-cli-python:latest
