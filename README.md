@@ -72,6 +72,20 @@ az vm create \
     --image UbuntuLTS \
     --ssh-key-value ~/.ssh/id_rsa.pub \
     --admin-username azureuser
+    
+Create a managed disk, using Azure CLI 2.0 in this example:
+ az disk create --resource-group rg1 --name fedora26managed --source https://username.blob.core.windows.net/container1/fedora26.vhd
+
+Verify its really there:
+ az disk list -g resourcegroup1 --output=table
+
+Create your vm with 5GB (or more) additional data disk:
+ az vm create --resource-group rg1 --location westeurope --name fedora26 --os-type linux \
+ --admin-username username --ssh-key-value ~/.ssh/id_rsa.pub --attach-os-disk fedora26managed \
+ --size Standard_DS1 --data-disk-sizes-gb 5
+
+Your metadata is stored outside of the VM and includes the external IP address, amongst other data.
+curl -H Metadata:true http://169.254.169.254/metadata/instance?api-version=2017-03-01
 
 </pre>
 
