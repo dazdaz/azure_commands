@@ -13,6 +13,8 @@ $ azure config mode arm
 # Or run az from a container (did'nt work when last tested due to Python dependency's)
 docker run -v ${HOME}:/root -it azuresdk/azure-cli-python:latest
 
+# Display subscription ID and Tenant ID
+$ az account show --query "{subscriptionId:id, tenantId:tenantId}"
 
 $ az group list | grep '"name":'
     "name": "my-rg",
