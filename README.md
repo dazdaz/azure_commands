@@ -74,7 +74,9 @@ az vm create \
     --image UbuntuLTS \
     --ssh-key-value ~/.ssh/id_rsa.pub \
     --admin-username azureuser
-    
+
+az vm open-port --port 8000 --resource-group ubuntu-rg --name ubuntuVM1
+
 Create a managed disk, using Azure CLI 2.0 in this example:
  az disk create --resource-group rg1 --name fedora26managed --source https://username.blob.core.windows.net/container1/fedora26.vhd
 
