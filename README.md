@@ -49,7 +49,7 @@ $ az vm restart --resource-group myrg --name "k8s-agent-6F3AE52A-2"
   "status": "Succeeded"
 }
 
-$ az vm image list -o table --location southeastasia
+$ az vm image list -o table --location southeastasia --all
 You are viewing an offline list of images, use --all to retrieve an up-to-date list
 Offer          Publisher               Sku                 Urn                                                             UrnAlias             Version
 -------------  ----------------------  ------------------  --------------------------------------------------------------  -------------------  ---------
