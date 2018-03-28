@@ -100,6 +100,8 @@ az network nic update -g RG-NAME -n NIC-NAME
 # Display VM SKU's within a region
 az vm list-skus --location southeastasia | egrep '    "name": "' | grep -v 'LowPriorityCapable'
 
+# List the name of the resource group in table output format:
+az group list --query '[].name' -o table
 </pre>
 
 https://github.com/Azure/azure-cli<br>
