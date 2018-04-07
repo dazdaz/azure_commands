@@ -19,6 +19,7 @@ AZURE_CONTAINER=mycontainer
 # create a resource group
 az group create --name $RG --location $LOCATION
 
+# Blob EndPoint: https://${AZURE_BLOBNAME}.blob.core.windows.net/${AZURE_CONTAINER}
 # Create a general-purpose standard storage BLOB
 az storage account create \
     --name $AZURE_STORAGE_ACCOUNT \
@@ -35,7 +36,7 @@ az storage account keys list \
     --resource-group $RG \
     --account-name $AZURE_BLOBNAME
 
-AZURE_STORAGE_ACCESS_KEY=$(az storage account keys list --resource-group $RG --account-name $AZURE_BLOBNAME --query '[0].value')
+AZURE_STORAGE_PRIMARY_KEY=$(az storage account keys list --resource-group $RG --account-name $AZURE_BLOBNAME --query '[0].value')
 
 # MyConectionString=$(az storage account show-connection-string -g MyRG -n DemoSA)
 ## Saves for the current session
@@ -60,7 +61,7 @@ az storage blob upload-batch \
     --source . \
     --destination $AZURE_CONTAINER
 
-# Download a file from the Azure BLOB
+# Download a Blob(file) from the Container(Folder)
 az storage blob download --container-name $AZURE_CONTAINER --name $AZURE_BLOBNAME --file "~/abc"
 
 # Azure Storage Explorer App - Windows|MacOS|Linux
@@ -77,5 +78,3 @@ az storage account delete \
 
 # Remove the RG
 az group delete --name $RG --yes
-
-# https://${AZURE_BLOBNAME}.blob.core.windows.net/${AZURE_CONTAINER}
