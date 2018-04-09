@@ -50,7 +50,7 @@ az storage container create --name $AZURE_CONTAINER --public-access blob
 
 # List the containers (folders)
 az storage container list
-az storage container list --query '[*].{name: name}' --account-name $AZURE_BLOBNAME --account-key $AZURE_STORAGE_ACCESS_KEY
+az storage container list --query '[*].{name: name}' --account-name $AZURE_BLOBNAME --account-key $AZURE_STORAGE_PRIMARY_KEY
 
 # Upload a file into the Azure BLOB
 az storage blob upload --container-name $AZURE_CONTAINER --name $AZURE_BLOBNAME --file "/etc/hosts"
