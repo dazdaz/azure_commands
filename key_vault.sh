@@ -6,9 +6,9 @@ az keyvault create --name $KEY_VAULT_NAME -g $KEY_VAULT_RG --sku standard --no-s
 az keyvault list
 
 # Add a name/password to vault
-az keyvault secret set --vault-name $KEY_VAULT_NAME --name 'SQLPassword' --value 'Pa$$w0rd'
+az keyvault secret set --vault-name $KEY_VAULT_NAME --name 'myapp' --value 'Pa$$w0rd'
 # Display password stored in keyvault
-az keyvault secret show --vault-name $KEY_VAULT_NAME --name mypass --query value
+az keyvault secret show --vault-name $KEY_VAULT_NAME --name myapp --query value
 #Lists keys in Vault (not passwords)
 az keyvault secret list --vault-name $KEY_VAULT_NAME
 
