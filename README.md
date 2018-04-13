@@ -106,6 +106,9 @@ az vm list-skus --location southeastasia | egrep '    "name": "' | grep -v 'LowP
 
 # List the name of the resource group in table output format:
 az group list --query '[].name' -o table
+
+# Remove the Service Principal
+az ad sp delete --id "Fabmedical-sp"
 </pre>
 
 https://github.com/Azure/azure-cli<br>
