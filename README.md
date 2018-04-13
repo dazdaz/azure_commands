@@ -1,7 +1,7 @@
 # azure-cli2-commands
 
 <pre>
-15th July 2017 - az 2.10 is the latest
+13th April 2018 - az 2.0.31 is the latest
 
 # Installing az
 curl -L https://aka.ms/InstallAzureCli | bash
