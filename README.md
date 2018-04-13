@@ -25,14 +25,14 @@ az vm image list-skus --offer RHEL --publisher RedHat --location southeastasia -
 # View all RHEL SKU's
 az vm image list --location southeastasia --offer RHEL --publisher RedHat --sku 7.3 --all --output table
 
-# Display image info on RHEL 7.3
+# Display image info on RHEL 7.3 - The image name is : 7.3.2017090723
 az vm image show --location southeastasia --publisher RedHat --offer RHEL --sku 7.3 --version 7.3.2017090723
 
 # View Ubuntu Image Specs
 az vm image show --location westus --publisher Canonical --offer UbuntuServer --sku 16.04-LTS --version 16.04.201801260
 
+# Build out VM
 az group create --name ubuntu-rg --location southeastasia
-
 az vm create \
     --resource-group ubuntu-rg \
     --name ubuntuVM1 \
@@ -40,6 +40,10 @@ az vm create \
     --image UbuntuLTS \
     --ssh-key-value ~/.ssh/id_rsa.pub \
     --admin-username azureuser
+
+# Deploy RHEL 7.5
+az vm create --location southeastasia --resource-group rhel75-rg --name rhel75 --image RedHat:RHEL:7.3:latest --admin-username dazdaz --admin-password 'sssh12345678' --size Standard_B1ms
+sudo yum update ; sudo reboot
 
 # Create your vm with 5GB (or more) additional data disk:
 az vm create --resource-group rg1 --location westeurope --name fedora26 --os-type linux \
@@ -127,6 +131,9 @@ az vm list-skus --location southeastasia | egrep '    "name": "' | grep -v 'LowP
 
 # List the name of the resource group in table output format:
 az group list --query '[].name' -o table
+
+# Deploying a soution from Azure Marketplace using Azure CLI
+https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/virtual-machines/linux/cli-ps-findimage.md
 
 # Remove the Service Principal
 az ad sp delete --id "Fabmedical-sp"
