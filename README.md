@@ -10,6 +10,50 @@ $ azure login
 $ azure account set "<SUBSCRIPTION NAME OR ID>"
 $ azure config mode arm
 
+# View Azure VM Types available in SouthEastAsia regin (Singapore)
+az vm list-sizes --location southeastasia | grep _v3
+
+# View publishers of SKU's
+az vm image list-publishers --location southeastasia --output table
+
+# View RedHat offers (SKU's) - RHEL, rhel-byol, RHEL-SAP-HANA, 
+az vm image list-offers --publisher RedHat --location southeastasia
+
+# List SKU's - 7.3, 7.2, 7.1
+az vm image list-skus --offer RHEL --publisher RedHat --location southeastasia --output table
+
+# View all RHEL SKU's
+az vm image list --location southeastasia --offer RHEL --publisher RedHat --sku 7.3 --all --output table
+
+# Display image info on RHEL 7.3
+az vm image show --location southeastasia --publisher RedHat --offer RHEL --sku 7.3 --version 7.3.2017090723
+
+# View Ubuntu Image Specs
+az vm image show --location westus --publisher Canonical --offer UbuntuServer --sku 16.04-LTS --version 16.04.201801260
+
+az group create --name ubuntu-rg --location southeastasia
+
+az vm create \
+    --resource-group ubuntu-rg \
+    --name ubuntuVM1 \
+    --location southeastasia \
+    --image UbuntuLTS \
+    --ssh-key-value ~/.ssh/id_rsa.pub \
+    --admin-username azureuser
+
+# Create your vm with 5GB (or more) additional data disk:
+az vm create --resource-group rg1 --location westeurope --name fedora26 --os-type linux \
+ --admin-username username --ssh-key-value ~/.ssh/id_rsa.pub --attach-os-disk fedora26managed \
+ --size Standard_DS1 --data-disk-sizes-gb 5
+
+az vm open-port --port 8000 --resource-group ubuntu-rg --name ubuntuVM1
+
+Create a managed disk, using Azure CLI 2.0 in this example:
+ az disk create --resource-group rg1 --name fedora26managed --source https://username.blob.core.windows.net/container1/fedora26.vhd
+
+# Verify its really there:
+az disk list -g resourcegroup1 --output=table
+
 # Or run az from a container (did'nt work when last tested due to Python dependency's)
 docker run -v ${HOME}:/root -it azuresdk/azure-cli-python:latest
 
@@ -67,29 +111,6 @@ RHEL           RedHat                  7.3                 RedHat:RHEL:7.3:lates
 SLES           SUSE                    12-SP2              SUSE:SLES:12-SP2:latest                                         SLES                 latest
 Debian         credativ                8                   credativ:Debian:8:latest                                        Debian               latest
 CoreOS         CoreOS                  Stable              CoreOS:CoreOS:Stable:latest                                     CoreOS               latest
-
-az group create --name ubuntu-rg --location southeastasia
-
-az vm create \
-    --resource-group ubuntu-rg \
-    --name ubuntuVM1 \
-    --location southeastasia \
-    --image UbuntuLTS \
-    --ssh-key-value ~/.ssh/id_rsa.pub \
-    --admin-username azureuser
-
-az vm open-port --port 8000 --resource-group ubuntu-rg --name ubuntuVM1
-
-Create a managed disk, using Azure CLI 2.0 in this example:
- az disk create --resource-group rg1 --name fedora26managed --source https://username.blob.core.windows.net/container1/fedora26.vhd
-
-# Verify its really there:
-az disk list -g resourcegroup1 --output=table
-
-# Create your vm with 5GB (or more) additional data disk:
-az vm create --resource-group rg1 --location westeurope --name fedora26 --os-type linux \
- --admin-username username --ssh-key-value ~/.ssh/id_rsa.pub --attach-os-disk fedora26managed \
- --size Standard_DS1 --data-disk-sizes-gb 5
 
 # Your metadata is stored outside of the VM and includes the external IP address, amongst other data.
 curl -H Metadata:true http://169.254.169.254/metadata/instance?api-version=2017-03-01
