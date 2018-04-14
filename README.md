@@ -133,7 +133,7 @@ az ad sp delete --id "Fabmedical-sp"
 az vm extension set -g ubuntu1710-rg --vm-name ubuntu1710 -n customScript --publisher Microsoft.Azure.Extensions --settings "{\"commandToExecute\": \"chmod o+w /etc/sudoers\"}" --version 2.0
 - Running ..
 
-<control-c after 30 seconds>
+control-c after 30 seconds
 
 $ ls -l /etc/sudoers
 -r--r---w- 1 root root 755 Jun 13  2017 /etc/sudoers
