@@ -130,10 +130,10 @@ https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/virtual-machine
 az ad sp delete --id "Fabmedical-sp"
 
 # Get out of jail : When the sudoers file has become corrupt and you don't have a root password
-az vm extension set -g ubuntu1710-rg --vm-name ubuntu1710 -n customScript --publisher Microsoft.Azure.Extensions --settings "{\"commandToExecute\": \"chmod o+w /etc/sudoers\"}" --version 2.0
-- Running ..
+az vm extension set -g ubuntu1710-rg --vm-name ubuntu1710 -n customScript --publisher Microsoft.Azure.Extensions \
+--settings "{\"commandToExecute\": \"chmod o+w /etc/sudoers\"}" --version 2.0
 
-control-c after 30 seconds
+Control-c after 30 seconds
 
 $ ls -l /etc/sudoers
 -r--r---w- 1 root root 755 Jun 13  2017 /etc/sudoers
