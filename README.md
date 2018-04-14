@@ -129,7 +129,8 @@ https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/virtual-machine
 # Remove the Service Principal
 az ad sp delete --id "Fabmedical-sp"
 
-# Get out of jail : When the sudoers file has become corrupt and you don't have a root password
+# Execute commands as root from outside of the VM.
+# When the sudoers file has become corrupt and you don't have a root password you can easily fix this.
 az vm extension set -g ubuntu1710-rg --vm-name ubuntu1710 -n customScript --publisher Microsoft.Azure.Extensions \
 --settings "{\"commandToExecute\": \"chmod o+w /etc/sudoers\"}" --version 2.0
 
