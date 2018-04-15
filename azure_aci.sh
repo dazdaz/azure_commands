@@ -8,5 +8,5 @@ $ az container create -g acidemo --name nginx --image microsoft/aci-helloworld -
 * Goto http://acidemo.southeastasia.azurecontainer.io//
 
 ## Updates
-*https://azure.microsoft.com/en-us/services/container-instances/
-*https://azure.microsoft.com/en-us/updates/aci-feb/
+https://azure.microsoft.com/en-us/services/container-instances/
+https://azure.microsoft.com/en-us/updates/aci-feb/
