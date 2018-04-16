@@ -171,8 +171,9 @@ mount /dev/sdb1
 df -h /dev/sdb1
 
 # Test random R/W to see IOPS - uses entire disk
+df -h /datadrive3
 sudo fio -filename=/datadrive1/test -iodepth=64 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k -numjobs=64 \
--runtime=30 -group_reporting -name=test-randwrite
+-runtime=30 -group_reporting -name=test-randwrite -size 479G
 ```
 
 https://github.com/Azure/azure-cli<br>
