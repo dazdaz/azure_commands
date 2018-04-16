@@ -141,6 +141,7 @@ $ ls -l /etc/sudoers
 </pre>
 
 ## Disk Management
+### Re-sizing a data disk
 ```
 # Display managed disks within a resource group, size is in GiB
 az disk list -g rhel75-rg --output table
@@ -162,10 +163,12 @@ az vm disk attach –g myResourceGroupDisk –-vm-name myVM –-disk $datadisk
 dmesg | grep sdd
 # Unmount disk and check file-system
 e2fsck /dev/vdb1
-# Re-sizing an ext4 file system may be grown whilst mounted
+# Re-size ext4 file system
 resize2fs /dev/sdb1
-# Re-mount
+# Re-mount disk (reads mountpoint from fstab)
 mount /dev/sdb1
+# Check the sizes
+df -h /dev/sdb1
 
 # Test random R/W to see IOPS - uses entire disk
 sudo fio -filename=/datadrive1/test -iodepth=64 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k -numjobs=64 \
