@@ -176,6 +176,13 @@ sudo fio -filename=/datadrive1/test -iodepth=64 -ioengine=libaio -direct=1 -rw=r
 -runtime=30 -group_reporting -name=test-randwrite -size 479G
 ```
 
+## Storage troubleshooting
+* Maximum throughput and IOPS are based on the VM limits, not on the disk limits.
+* Cross reference throughput required as indicated in the Premium Disk with the Azure VM Type.
+https://docs.microsoft.com/en-us/azure/virtual-machines/windows/premium-storage#premium-storage-scalability-and-performance-targets
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-general
+
+## Links
 https://github.com/Azure/azure-cli<br>
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-manage<br>
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-manage-vm<br>
