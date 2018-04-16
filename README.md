@@ -123,6 +123,9 @@ az vm list-skus --location southeastasia | egrep '    "name": "' | grep -v 'LowP
 # List the name of the resource group in table output format:
 az group list --query '[].name' -o table
 
+# List the VM Type resize options available
+az vm list-vm-resize-options --name ubuntu1710 --resource-group ubuntu1710-rg
+
 # Deploying a soution from Azure Marketplace using Azure CLI
 https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/virtual-machines/linux/cli-ps-findimage.md
 
