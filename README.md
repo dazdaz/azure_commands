@@ -123,9 +123,6 @@ az vm list-skus --location southeastasia | egrep '    "name": "' | grep -v 'LowP
 # List the name of the resource group in table output format:
 az group list --query '[].name' -o table
 
-# List the VM Type resize options available
-az vm list-vm-resize-options --name ubuntu1710 --resource-group ubuntu1710-rg
-
 # Deploying a soution from Azure Marketplace using Azure CLI
 https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/virtual-machines/linux/cli-ps-findimage.md
 
@@ -142,6 +139,38 @@ Control-c after 30 seconds
 $ ls -l /etc/sudoers
 -r--r---w- 1 root root 755 Jun 13  2017 /etc/sudoers
 </pre>
+
+## Disk Management
+```
+# Display managed disks within a resource group, size is in GiB
+az disk list -g rhel75-rg --output table
+Name                                              ResourceGroup    Location       Zones    Sku            SizeGb  ProvisioningState    OsType
+------------------------------------------------  ---------------  -------------  -------  -----------  --------  -------------------  --------
+rhel75_disk2_7c2ffb9dd9f94fc68ac0fc976d58436f     rhel75-rg        southeastasia           Premium_LRS         5  Succeeded
+rhel75_disk3_09713040473f426c952aae77c67fe95c     rhel75-rg        southeastasia           Premium_LRS         5  Succeeded
+rhel75_OsDisk_1_43958238a75444199b25b7d8336bb939  rhel75-rg        southeastasia           Premium_LRS        32  Succeeded            Linux
+
+# List the VM Type resize options available
+az vm list-vm-resize-options --name ubuntu1710 --resource-group ubuntu1710-rg
+# Deallocate disk from VM
+az vm deallocate --resource-group myResourceGroupDisk --name myVM
+# Resize a disk
+az disk update --name myDataDisk --resource-group myResourceGroupDisk --size-gb 1023
+# Re-attach data-disk
+az vm disk attach –g myResourceGroupDisk –-vm-name myVM –-disk $datadisk
+# Check that kernel has identified the updated disk size
+dmesg | grep sdd
+# Unmount disk and check file-system
+e2fsck /dev/vdb1
+# Re-sizing an ext4 file system may be grown whilst mounted
+resize2fs /dev/sdb1
+# Re-mount
+mount /dev/sdb1
+
+# Test random R/W to see IOPS - uses entire disk
+sudo fio -filename=/datadrive1/test -iodepth=64 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k -numjobs=64 \
+-runtime=30 -group_reporting -name=test-randwrite
+```
 
 https://github.com/Azure/azure-cli<br>
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-manage<br>
