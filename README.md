@@ -162,13 +162,13 @@ az vm disk attach –g myResourceGroupDisk –-vm-name myVM –-disk $datadisk
 # Check that kernel has identified the updated disk size
 dmesg | grep sdd
 # Unmount disk and check file-system
-e2fsck /dev/vdb1
+e2fsck /dev/sdd1
 # Re-size ext4 file system
-resize2fs /dev/sdb1
+resize2fs /dev/sdd1
 # Re-mount disk (reads mountpoint from fstab)
-mount /dev/sdb1
+mount /dev/sdd1
 # Check the sizes
-df -h /dev/sdb1
+df -h /dev/sdd1
 
 # Test random R/W to see IOPS - uses entire disk
 df -h /datadrive3
