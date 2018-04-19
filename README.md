@@ -172,8 +172,8 @@ df -h /dev/sdd1
 
 # Test random R/W to see IOPS - uses entire disk
 df -h /datadrive3
-sudo fio -filename=/datadrive1/test -iodepth=64 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k -numjobs=64 \
--runtime=30 -group_reporting -name=test-randwrite -size 479G
+sudo fio -filename=/datadrive3/test -iodepth=8 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k \
+-numjobs=1 -runtime=30 -group_reporting -name=test-randwrite -size 479G
 ```
 
 ## Storage troubleshooting
