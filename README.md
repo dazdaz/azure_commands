@@ -172,7 +172,7 @@ sudo mount /dev/sdc1 /datadrive
 df -h /datadrive1
 ```
 
-### Test random R/W to see IOPS - uses entire disk
+### Test random R/W to see IOPS - Creates a file on the existing file-system
 ```
 df -h /datadrive3
 sudo fio -filename=/datadrive3/test -iodepth=8 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k \
@@ -188,7 +188,7 @@ az vm disk detach -g ubuntu1710-rg --vm-name ubuntu1710 --name myDataDisk1
 ## Storage troubleshooting
 * Maximum throughput and IOPS are based on the VM limits, not on the disk limits.
 * Cross reference throughput required as indicated in the Premium Disk with the Azure VM Type.
-https://docs.microsoft.com/en-us/azure/virtual-machines/windows/premium-storage#premium-storage-scalability-and-performance-targets
+https://docs.microsoft.com/en-us/azure/virtual-machines/windows/premium-storage#premium-storage-scalability-and-performance-targets<br>
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-general
 
 ## Links
