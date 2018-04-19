@@ -28,6 +28,9 @@ az vm image list --location southeastasia --offer RHEL --publisher RedHat --sku 
 # Display image info on RHEL 7.3 - The image name is : 7.3.2017090723
 az vm image show --location southeastasia --publisher RedHat --offer RHEL --sku 7.3 --version 7.3.2017090723
 
+# View all Azure VM Types which can be used to VM Re-Sizing
+az vm list-vm-resize-options --name ubuntu1710 --resource-group ubuntu1710-rg --output table
+
 # View Ubuntu Image Specs
 az vm image show --location westus --publisher Canonical --offer UbuntuServer --sku 16.04-LTS --version 16.04.201801260
 
@@ -152,8 +155,6 @@ rhel75_disk2_7c2ffb9dd9f94fc68ac0fc976d58436f     rhel75-rg        southeastasia
 rhel75_disk3_09713040473f426c952aae77c67fe95c     rhel75-rg        southeastasia           Premium_LRS         5  Succeeded
 rhel75_OsDisk_1_43958238a75444199b25b7d8336bb939  rhel75-rg        southeastasia           Premium_LRS        32  Succeeded            Linux
 
-# List the VM Type resize options available
-az vm list-vm-resize-options --name ubuntu1710 --resource-group ubuntu1710-rg
 # Deallocate disk from VM
 az vm deallocate --resource-group myResourceGroupDisk --name myVM
 # Resize a disk - Enter the new size
