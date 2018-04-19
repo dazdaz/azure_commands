@@ -155,7 +155,7 @@ rhel75_disk2_7c2ffb9dd9f94fc68ac0fc976d58436f     rhel75-rg        southeastasia
 rhel75_disk3_09713040473f426c952aae77c67fe95c     rhel75-rg        southeastasia           Premium_LRS         5  Succeeded
 rhel75_OsDisk_1_43958238a75444199b25b7d8336bb939  rhel75-rg        southeastasia           Premium_LRS        32  Succeeded            Linux
 
-# Deallocate disk from VM
+# Deallocate disk from VM (Switches it off)
 az vm deallocate --resource-group myResourceGroupDisk --name myVM
 # Resize a disk - Enter the new size
 az disk update --name myDataDisk --resource-group myResourceGroupDisk --size-gb 1023
@@ -180,10 +180,10 @@ sudo fio -filename=/datadrive3/test -iodepth=8 -ioengine=libaio -direct=1 -rw=ra
 -numjobs=1 -runtime=30 -group_reporting -name=test-randwrite -size 479G
 ```
 
-### Re-moving a Disk
+### Re-moving a Disk from a VM (not deleting)
 ```
 az disk list --resource-group ubunth1710-rg--query '[].name' -o table
-az vm disk detach -g ubuntu1710-rg --vm-name ubuntu1710 --name myDataDisk1
+az vm disk detach -g ubuntu1710-rg --vm-name ubuntu1710 --name ubuntu1710_myDataDisk1
 ```
 
 ## Storage troubleshooting
