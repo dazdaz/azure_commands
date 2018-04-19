@@ -141,7 +141,8 @@ $ ls -l /etc/sudoers
 </pre>
 
 ## Disk Management
-### Re-sizing a data disk
+### Expanding an Azure data disk - Requires you to power-off the VM
+* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks
 ```
 # Display managed disks within a resource group, size is in GiB
 az disk list -g rhel75-rg --output table
@@ -155,25 +156,33 @@ rhel75_OsDisk_1_43958238a75444199b25b7d8336bb939  rhel75-rg        southeastasia
 az vm list-vm-resize-options --name ubuntu1710 --resource-group ubuntu1710-rg
 # Deallocate disk from VM
 az vm deallocate --resource-group myResourceGroupDisk --name myVM
-# Resize a disk
+# Resize a disk - Enter the new size
 az disk update --name myDataDisk --resource-group myResourceGroupDisk --size-gb 1023
-# Re-attach data-disk
-az vm disk attach –g myResourceGroupDisk –-vm-name myVM –-disk $datadisk
-# Check that kernel has identified the updated disk size
-dmesg | grep sdd
-# Unmount disk and check file-system
-e2fsck /dev/sdd1
-# Re-size ext4 file system
-resize2fs /dev/sdd1
-# Re-mount disk (reads mountpoint from fstab)
-mount /dev/sdd1
-# Check the sizes
-df -h /dev/sdd1
+# Start VM
+az vm start --resource-group myResourceGroup --name myVM
+
+# Un-mount disk, if auto-mounted when VM starts
+sudo parted /dev/sdc
+ (parted) resizepart
+ Partition number? 1
+ End?  [107GB]? 215GB
+sudo e2fsck -f /dev/sdc1
+sudo resize2fs /dev/sdc1
+sudo mount /dev/sdc1 /datadrive
+df -h /datadrive1
 
 # Test random R/W to see IOPS - uses entire disk
 df -h /datadrive3
 sudo fio -filename=/datadrive3/test -iodepth=8 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k \
 -numjobs=1 -runtime=30 -group_reporting -name=test-randwrite -size 479G
+```
+
+### Re-moving a Disk
+```
+az disk list --resource-group ubunth1710-rg--query '[].name' -o table
+az vm disk detach -g ubuntu1710-rg --vm-name ubuntu1710 --
+
+myDataDisk1
 ```
 
 ## Storage troubleshooting
