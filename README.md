@@ -170,8 +170,10 @@ sudo e2fsck -f /dev/sdc1
 sudo resize2fs /dev/sdc1
 sudo mount /dev/sdc1 /datadrive
 df -h /datadrive1
+```
 
-# Test random R/W to see IOPS - uses entire disk
+### Test random R/W to see IOPS - uses entire disk
+```
 df -h /datadrive3
 sudo fio -filename=/datadrive3/test -iodepth=8 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k \
 -numjobs=1 -runtime=30 -group_reporting -name=test-randwrite -size 479G
