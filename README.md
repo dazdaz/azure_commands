@@ -180,9 +180,7 @@ sudo fio -filename=/datadrive3/test -iodepth=8 -ioengine=libaio -direct=1 -rw=ra
 ### Re-moving a Disk
 ```
 az disk list --resource-group ubunth1710-rg--query '[].name' -o table
-az vm disk detach -g ubuntu1710-rg --vm-name ubuntu1710 --
-
-myDataDisk1
+az vm disk detach -g ubuntu1710-rg --vm-name ubuntu1710 --name myDataDisk1
 ```
 
 ## Storage troubleshooting
