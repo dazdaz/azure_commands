@@ -181,7 +181,7 @@ sudo mount /dev/sdc1 /datadrive
 df -h /datadrive1
 ```
 
-### Test random R/W to see IOPS - Creates a file on the existing file-system
+### Test random R/W to view IOPS and Throughput performance - Creates a file on the existing file-system
 ```
 df -h /datadrive3
 sudo fio -filename=/datadrive3/test -iodepth=8 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k \
