@@ -25,6 +25,9 @@ az vm image list-skus --offer RHEL --publisher RedHat --location southeastasia -
 # View all RHEL SKU's
 az vm image list --location southeastasia --offer RHEL --publisher RedHat --sku 7.3 --all --output table
 
+# List all UbuntuServer SKUs
+az vm image list-skus --offer UbuntuServer --publisher Canonical --location southeastasia --output table
+
 # Display image info on RHEL 7.3 - The image name is : 7.3.2017090723
 az vm image show --location southeastasia --publisher RedHat --offer RHEL --sku 7.3 --version 7.3.2017090723
 
