@@ -135,6 +135,11 @@ https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/virtual-machine
 # Remove the Service Principal
 az ad sp delete --id "Fabmedical-sp"
 
+# Creating an Azure Container Registry - ACR
+az acr create --name fabmedicaldaz --sku Standard --resource-group fabmedical-daz-rg --location eastus --admin-enabled
+az acr show --name fabmedicaldaz --resource-group fabmedical-daz-rg
+az acr credential show --name fabmedicaldaz --resource-group fabmedical-daz-rg -o table
+
 # Execute commands as root from outside of the VM.
 # When the sudoers file has become corrupt and you don't have a root password you can easily fix this.
 az vm extension set -g ubuntu1710-rg --vm-name ubuntu1710 -n customScript --publisher Microsoft.Azure.Extensions \
