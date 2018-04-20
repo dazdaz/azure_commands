@@ -1,8 +1,8 @@
 # azure-cli2-commands
 
-<pre>
-13th April 2018 - az 2.0.31 is the latest
+* 13th April 2018 - az 2.0.31 is the latest
 
+<pre>
 # Installing az
 curl -L https://aka.ms/InstallAzureCli | bash
 
@@ -13,6 +13,7 @@ $ azure config mode arm
 # View Azure VM Types available in SouthEastAsia regin (Singapore)
 az vm list-sizes --location southeastasia | grep _v3
 
+### VM Images
 # View publishers of SKU's
 az vm image list-publishers --location southeastasia --output table
 
@@ -34,6 +35,9 @@ az vm image show --location southeastasia --publisher RedHat --offer RHEL --sku 
 # View all Azure VM Types which can be used to VM Re-Sizing
 az vm list-vm-resize-options --name ubuntu1710 --resource-group ubuntu1710-rg --output table
 
+# View Ubuntu Urn's
+az vm image list --location southeastasia --offer UbuntuServer --publisher Canonical --sku 18.04 --all --output table
+
 # View Ubuntu Image Specs
 az vm image show --location westus --publisher Canonical --offer UbuntuServer --sku 16.04-LTS --version 16.04.201801260
 
@@ -53,8 +57,10 @@ RHEL           RedHat                  7.3                 RedHat:RHEL:7.3:lates
 SLES           SUSE                    12-SP2              SUSE:SLES:12-SP2:latest                                         SLES                 latest
 Debian         credativ                8                   credativ:Debian:8:latest                                        Debian               latest
 CoreOS         CoreOS                  Stable              CoreOS:CoreOS:Stable:latest                                     CoreOS               latest
+</pre>
 
-# Build out VM
+<pre>
+## Build out VM
 az group create --name ubuntu-rg --location southeastasia
 az vm create \
     --resource-group ubuntu-rg \
