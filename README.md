@@ -189,12 +189,13 @@ sudo fio -filename=/datadrive3/test -iodepth=8 -ioengine=libaio -direct=1 -rw=ra
 ```
 
 ### Un-attach a Disk from a VM and *delete* Azure Data Disk
-# Backup Data before destroying disk
+#### Backup Data before destroying disk
 ```
 az disk list --resource-group ubuntu1710-rg -o table
 # Stop any app using the file-system
 umount /datadrive3
 # Remove entry from /etc/fstab
+# This will remove the owner flag from the disk which is the name of the VM where the disk is imported
 az vm disk detach --name myDataDisk3 -g ubuntu1710-rg --vm-name ubuntu1710
 az disk delete --name myDataDisk3 --resource-group ubuntu1710-rg --no-wait
 ```
