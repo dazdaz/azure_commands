@@ -138,6 +138,15 @@ az group list --query '[].name' -o table
 # Deploying a soution from Azure Marketplace using Azure CLI
 https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/virtual-machines/linux/cli-ps-findimage.md
 
+# Show Account Subscription
+az account list --query '[?isDefault].id' -o tsv
+
+# Query all Service Principal's by Account Subscription
+az ad sp list --query "[?contains(id, '123456-fafb-4353-828b-ab5083d12345')]"
+
+# Query by SP name
+az ad sp list --query "[?contains(displayName, 'lnx')]"
+
 # Remove the Service Principal
 az ad sp delete --id "Fabmedical-sp"
 
