@@ -157,8 +157,8 @@ az acr credential show --name fabmedicaldaz --resource-group fabmedical-daz-rg -
 
 # Execute commands as root from outside of the VM.
 # When the sudoers file has become corrupt and you don't have a root password you can easily fix this.
-az vm extension set -g ubuntu1710-rg --vm-name ubuntu1710 -n customScript --publisher Microsoft.Azure.Extensions \
---settings "{\"commandToExecute\": \"chmod o+w /etc/sudoers\"}" --version 2.0
+az vm extension set -g ubuntu1710-rg --vm-name ubuntu1710 -n customScript --publisher Microsoft.Azure.Extensions --version 2.0 \
+--settings '{"commandToExecute": "chmod o+w /etc/sudoers"}'
 
 Control-c after 30 seconds
 
