@@ -11,7 +11,7 @@ $ azure account set "<SUBSCRIPTION NAME OR ID>"
 $ azure config mode arm
 
 # View Azure VM Types available in SouthEastAsia regin (Singapore)
-az vm list-sizes --location southeastasia | grep _v3
+az vm list-sizes --location southeastasia --query "[].name" -o tsv
 
 ### VM Images
 # View publishers of SKU's
