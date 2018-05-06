@@ -187,6 +187,9 @@ $ az ad sp list --spn <clientId> | grep appId
 
 # Show expiry date on your SP and search on endDate.  Ignore characters after the T.
 $ az ad app show --id <appId> | grep endDate
+
+# Reset credential for 1 more year
+$ az ad sp reset-credentials --name <appId>
 ```
 
 
