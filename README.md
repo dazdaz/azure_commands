@@ -168,7 +168,17 @@ Control-c after 30 seconds
 
 $ ls -l /etc/sudoers
 -r--r---w- 1 root root 755 Jun 13  2017 /etc/sudoers
+
+az vm extension delete -h ubunty1710-rg --vm-name ubuntu1710
 </pre>
+
+
+## Service Principals
+* https://markheath.net/post/create-service-principal-azure-cli
+```
+# Show expiry date on your SP and search on EndDate
+az ad app show --id <appId>
+```
 
 ## Disk Management
 ### Expanding an Azure data disk - Requires you to power-off the VM
