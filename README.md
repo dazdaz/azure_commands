@@ -10,6 +10,10 @@ $ azure login
 $ azure account set "<SUBSCRIPTION NAME OR ID>"
 $ azure config mode arm
 
+# Show your tenandId
+$ az account show --query "{tenantId:tenantId}" -o tsv
+77777777-8666-1111-1111-2d7cd011dbdb
+
 # View Azure VM Types available in SouthEastAsia regin (Singapore)
 az vm list-sizes --location southeastasia --query "[].name" -o tsv
 
