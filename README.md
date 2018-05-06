@@ -169,15 +169,41 @@ Control-c after 30 seconds
 $ ls -l /etc/sudoers
 -r--r---w- 1 root root 755 Jun 13  2017 /etc/sudoers
 
-az vm extension delete -h ubunty1710-rg --vm-name ubuntu1710
+$ az vm extension delete -h ubunty1710-rg --vm-name ubuntu1710
+
+$ az resource list --resource-type "Microsoft.Storage/storageAccounts"
 </pre>
 
+## AKS
+```
+# List AKS clusters within your subscription
+$ az resource list --resource-type "Microsoft.ContainerService/managedClusters"
+
+# Display all details on your AKS cluster including clientId
+$ az resource show -n my-aks -g my-aks-rg --resource-type "Microsoft.ContainerService/managedClusters"
+
+$ az ad sp list --spn <clientId> | grep appId
+
+# Show expiry date on your SP and search on EndDate
+$ az ad app show --id <appId> | grep endDate
+
+
+```
 
 ## Service Principals
 * https://markheath.net/post/create-service-principal-azure-cli
 ```
+# Creating a SP
+azure ad sp create --applicationId $CLIENT_ID
+
 # Show expiry date on your SP and search on EndDate
 az ad app show --id <appId>
+
+# get the app id
+appId=$(az ad app list --display-name $appName --query [].appId -o tsv)
+
+# To see the expiration date on a SP through the portal
+Azure Portal / App Registrations / DisplayName / Settings / Keys / Expires
 ```
 
 ## Disk Management
