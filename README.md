@@ -174,7 +174,8 @@ $ az vm extension delete -h ubunty1710-rg --vm-name ubuntu1710
 $ az resource list --resource-type "Microsoft.Storage/storageAccounts"
 </pre>
 
-## AKS
+
+## AKS - Howto view the expiry on the AKS SP
 ```
 # List AKS clusters within your subscription
 $ az resource list --resource-type "Microsoft.ContainerService/managedClusters"
@@ -184,14 +185,14 @@ $ az resource show -n my-aks -g my-aks-rg --resource-type "Microsoft.ContainerSe
 
 $ az ad sp list --spn <clientId> | grep appId
 
-# Show expiry date on your SP and search on EndDate
+# Show expiry date on your SP and search on endDate.  Ignore characters after the T.
 $ az ad app show --id <appId> | grep endDate
-
-
 ```
+
 
 ## Service Principals
 * https://markheath.net/post/create-service-principal-azure-cli
+* Service Principals in Azure expire after 1 year by default
 ```
 # Creating a SP
 azure ad sp create --applicationId $CLIENT_ID
