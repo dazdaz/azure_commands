@@ -182,6 +182,7 @@ fabmedical-daz  FABMEDICAL-DAZ-RG       UbuntuServer
 
 # To view if your VM's have maintenance scheduled or require a reboot
 # https://docs.microsoft.com/en-us/azure/virtual-machines/linux/maintenance-notifications
+# https://channel9.msdn.com/Shows/Tuesdays-With-Corey/Combine-Azure-scheduled-events-with-Event-Grid Alternate method to do this
 $ az vm list --query '[].{name:name, resourceGroup:resourceGroup}' -o tsv | xargs -t -n 2 sh -c 'az vm get-instance-view -n $0 -g $1' | grep maintenanceRedeployStatus
 </pre>
 
