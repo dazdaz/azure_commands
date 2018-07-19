@@ -14,6 +14,9 @@ $ azure config mode arm
 $ az account show --query "{tenantId:tenantId}" -o tsv
 77777777-8666-1111-1111-2d7cd011dbdb
 
+# Opening up a firewall rule
+$ az vm open-port -g u16041-rg -n u16041 --port 20000 --priority 1001
+
 # View Azure VM Types available in SouthEastAsia regin (Singapore)
 az vm list-sizes --location southeastasia --query "[].name" -o tsv
 
