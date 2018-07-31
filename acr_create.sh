@@ -8,7 +8,7 @@ az group create --name ${ACRRG} --location southeastasia
 az acr create --name ${ACRREG} --sku Standard --resource-group ${ACRRG} --location southeastasia --admin-enabled
 az acr show --name ${ACRADMIN} --resource-group ${ACRRG}
 # az acr credential show --name ${ACRADMIN} --resource-group ${ACRRG} -o table
-ACRPASS=$(az acr credential show --name dazacr --resource-group dazacr-rg --query passwords[0].value -o tsv)
+ACRPASS=$(az acr credential show --name ${ARCADMIN} --resource-group ${ARCRG} --query passwords[0].value -o tsv)
 
 docker login ${ACRREG} -u ${ARCADMIN} -p ${ACRPASS}
 docker pull dazdaz/chirp
