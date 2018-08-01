@@ -1,5 +1,6 @@
-# ACR Build job is persistent and will monitor for updates in the GitHub repo
-# Create PAT (Personal Access Token) : https://github.com/settings/tokens
+# ACR Build job is persistent and will monitor for updates in the GitHub repo.
+# You don't need to configure a Webhook for ACR build functionality.
+# Create PAT (Personal Access Token) : https://github.com/settings/tokens.
 # repo
 # - repo:status
 # - public_repo
@@ -23,3 +24,6 @@ az acr build-task run --registry $ACR_NAME --name buildhelloworld
 # View container build status
 az acr build-task logs --registry $ACR_NAME
 az acr build-task list-builds --registry $ACR_NAME --output table
+
+# Show pre-configured build tasks
+az acr build-task list --registry $ACR_NAME --resource-group $ACR_RG
