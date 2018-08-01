@@ -1,9 +1,13 @@
 # ACR Build job is persistent and will monitor for updates in the GitHub repo.
 # You don't need to configure a Webhook for ACR build functionality.
+
+# https://docs.microsoft.com/en-us/azure/container-registry/container-registry-tutorial-build-task
+
 # Create PAT (Personal Access Token) : https://github.com/settings/tokens.
 # repo
 # - repo:status
 # - public_repo
+
 GIT_PAT=1234567890
 ACR_NAME=myregistry              # The name of your Azure container registry
 GIT_USER=dazzler                 # Your GitHub user account name
