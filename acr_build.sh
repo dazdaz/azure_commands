@@ -17,6 +17,7 @@ az acr build-task create \
     --registry $ACR_NAME \
     --name buildhelloworld \
     --image helloworld:{{.Build.ID}} \
+    --image helloworld:latest \
     --context https://github.com/$GIT_USER/acr-build-helloworld-node \
     --branch master \
     --git-access-token $GIT_PAT
