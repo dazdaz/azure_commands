@@ -57,4 +57,4 @@ $ az group delete --name acidemo-rg --no-wait --yes
 
 
 # Azure Container Instances as SOCKS proxy
-* https://gist.github.com/noelbundick/be9bf7bcaa6c6bcee4b65da841c620a3#file-proxy-sh
+*https://gist.github.com/noelbundick/be9bf7bcaa6c6bcee4b65da841c620a3#file-proxy-sh
