@@ -54,3 +54,7 @@ $ az group delete --name acidemo-rg --no-wait --yes
 # https://docs.microsoft.com/en-us/azure/container-instances/container-instances-jenkins
 
 # Various volume types for Linux containers including Azure Files, gitRepo, emptyDir, and secret
+
+
+# Azure Container Instances as SOCKS proxy
+https://gist.github.com/noelbundick/be9bf7bcaa6c6bcee4b65da841c620a3#file-proxy-sh
