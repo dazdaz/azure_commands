@@ -1,12 +1,13 @@
 ## Multicontainer demo on WebApp for Containers
+
 ```
 git clone https://github.com/yiliaomsft/compose-redis
 az webapp config container set -g yill-cus-stage-01 --name yill-stage-multicontainer-1 --multicontainer-config-type compose --multicontainer-config-file "docker-conpose-appservice.yml"
 ```
 
-https://azure.microsoft.com/en-us/blog/app-service-adding-multi-container-capabilities-and-linux-support-for-app-service-environment/
-https://blogs.msdn.microsoft.com/waws/2017/09/08/things-you-should-know-web-apps-and-linux/
-https://github.com/yiliaomsft
+* https://azure.microsoft.com/en-us/blog/app-service-adding-multi-container-capabilities-and-linux-support-for-app-service-environment/
+* https://blogs.msdn.microsoft.com/waws/2017/09/08/things-you-should-know-web-apps-and-linux/
+* https://github.com/yiliaomsft
 
 Example of nginx frontend routing to node.js.  Add additional location blocks to handle other “routes”
-https://github.com/yiliaomsft/example-voting-app/blob/master/docker-compose-javaworker.yml
+* https://github.com/yiliaomsft/example-voting-app/blob/master/docker-compose-javaworker.yml
