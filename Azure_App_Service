@@ -1,2 +1,3 @@
 https://github.com/Azure-App-Service/java/blob/master/jre8-alpine/init_container.sh
 https://github.com/yiliaomsft/example-voting-app/blob/master/proxy/my-nginx.conf
+https://github.com/Azure-App-Service/tomcat
