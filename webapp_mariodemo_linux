@@ -11,6 +11,7 @@ az appservice plan create --sku S1 --name linux_seasia_plan1 --is-linux --locati
 az webapp create --resource-group sm-rg --name smwww --deployment-container-image-name dazdaz/mariohtml5:latest --plan linux_seasia_plan1 --output jsonc
 az webapp config appsettings set -g sm-rg -n smwww --settings WEBSITES_CONTAINER_START_TIME_LIMIT=60
 # http://smwww.azurewebsites.net/
+# http://smwww.scm.azurewebsites.net
 
 # Cleanup
 az webapp stop --name smwww --resource-group sm-rg
