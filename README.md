@@ -283,6 +283,52 @@ az disk delete --name myDataDisk3 --resource-group ubuntu1710-rg --no-wait
 https://docs.microsoft.com/en-us/azure/virtual-machines/windows/premium-storage#premium-storage-scalability-and-performance-targets<br>
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-general
 
+## Azure Locks
+```
+$ az group lock create --resource-group test -n test-CanNotDelete --lock-type CanNotDelete
+{
+  "id": "/subscriptions/<snip>/resourceGroups/test/providers/Microsoft.Authorization/locks/test-CanNotDelete",
+  "level": "CanNotDelete",
+  "name": "test-CanNotDelete",
+  "notes": null,
+  "owners": null,
+  "resourceGroup": "test",
+  "type": "Microsoft.Authorization/locks"
+}
+
+
+$ az group lock delete -g test -n test-CanNotDelete
+
+
+$ az group delete --resource-group test --yes
+The scope '/subscriptions/<snip>/resourcegroups/test' cannot perform delete operation because following scope(s) are locked: '/subscriptions/<snip>/resourceGroups/test'. Please remove the lock and try again.
+
+
+$ az group lock list -g test
+[
+  {
+    "id": "/subscriptions/<snip>/resourceGroups/test/providers/Microsoft.Authorization/locks/test-CanNotDelete",
+    "level": "CanNotDelete",
+    "name": "test-CanNotDelete",
+    "notes": null,
+    "owners": null,
+    "resourceGroup": "test",
+    "type": "Microsoft.Authorization/locks"
+  }
+]
+
+$ az group lock show -g test -n test-CanNotDelete
+{
+  "id": "/subscriptions/<snip>/resourceGroups/test/providers/Microsoft.Authorization/locks/test-CanNotDelete",
+  "level": "CanNotDelete",
+  "name": "test-CanNotDelete",
+  "notes": null,
+  "owners": null,
+  "resourceGroup": "test",
+  "type": "Microsoft.Authorization/locks"
+}
+```
+
 ## Links
 https://github.com/Azure/azure-cli<br>
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-manage<br>
