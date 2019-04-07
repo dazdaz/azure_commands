@@ -20,6 +20,9 @@ $ az vm open-port -g u16041-rg -n u16041 --port 20000 --priority 1001
 # Deploy a VM from an ARM Template
 az group deployment create --template-file azuredepoy.json --parameters '@vmparams.json' --resource-group myvms --output table
 
+## View public IP
+az vm show -d --resource-group myResourceGroup --name linuxVM --query publicIps -o tsv
+
 # View Azure VM Types available in SouthEastAsia regin (Singapore)
 az vm list-sizes --location southeastasia --query "[].name" -o tsv
 
