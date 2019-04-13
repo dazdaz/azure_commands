@@ -332,6 +332,12 @@ $ az group lock show -g test -n test-CanNotDelete
 }
 ```
 
+## Report CPU usage of less than 20% in Azure Advisor
+```
+az advisor configuration update -l 20
+az advisor configuration show
+```
+
 ## Links
 https://github.com/Azure/azure-cli<br>
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-manage<br>
