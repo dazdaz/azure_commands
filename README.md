@@ -14,6 +14,9 @@ $ azure config mode arm
 $ az account show --query "{tenantId:tenantId}" -o tsv
 77777777-8666-1111-1111-2d7cd011dbdb
 
+# Useful for an quick overview of what services may be configured in your subscription
+az group list --query '[].{ ResourceGroup: name, Location:location }' -o tsv
+
 # Opening up a firewall rule
 $ az vm open-port -g u16041-rg -n u16041 --port 20000 --priority 1001
 
