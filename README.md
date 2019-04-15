@@ -10,6 +10,9 @@ $ azure login
 $ azure account set "<SUBSCRIPTION NAME OR ID>"
 $ azure config mode arm
 
+# Display all Azure regions
+az account list-locations --query [*].[displayName,name] -o table
+
 # Show your tenandId
 $ az account show --query "{tenantId:tenantId}" -o tsv
 77777777-8666-1111-1111-2d7cd011dbdb
