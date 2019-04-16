@@ -23,6 +23,11 @@ az group list --query '[].{ ResourceGroup: name, Location:location }' -o tsv
 # Opening up a firewall rule
 $ az vm open-port -g u16041-rg -n u16041 --port 20000 --priority 1001
 
+# Modifying the NSG
+$ az network nsg rule create --nsg-name <existing NSG> --resource-group <RG> -n pacman-nonstandard-8889 --direction 'Inbound' \
+--priority 2001 --access Allow --source-address-prefixes '*' --source-port-ranges '*' --destination-address-prefixes '*' \
+--destination-port-range 8889 --protocol tcp --debug
+
 # Deploy a VM from an ARM Template
 az group deployment create --template-file azuredepoy.json --parameters '@vmparams.json' --resource-group myvms --output table
 
