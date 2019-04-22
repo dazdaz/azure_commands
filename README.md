@@ -349,6 +349,18 @@ az advisor configuration update -l 20
 az advisor configuration show
 ```
 
+## Using MSI with SQL Server
+```
+$az webapp identity assign --resource-group MyApp --name MyaddresssBook
+{
+	"principalId": "addeebee-1c21-4e8f-bf0f-5e4b07b363d7"
+	"tenantId" "0ec02b79-d89f-48c4-9870-da4a7498d887"
+	"type:" "SystemAssigned"
+}
+
+$ az sql server ad-admin create --resource-group MyApp --server-name zaalion --display-name msiadmin --object-id addeebee-1c21-4e8f-bf0f-5e4b07b363d7
+```
+
 ## Links
 https://github.com/Azure/azure-cli<br>
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-manage<br>
