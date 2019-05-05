@@ -3,8 +3,17 @@
 $ az group create --name acidemo-rg --location southeastasia
 $ az container create -g acidemo-rg --name nginx --image microsoft/aci-helloworld --os-type linux --cpu 2 --memory 7 \
   --ip-address public --ports 80 443 --dns-name-label acidemo --restart-policy OnFailure
+$ echo "http://acidemo.southeastasia.azurecontainer.io/"
 
-echo "http://acidemo.southeastasia.azurecontainer.io/"
+$ az container create \                                                                                                                                          
+        --name my-simulator-app \
+        --resource-group simulator \
+        --location eastus \
+        --image mysim.azurecr.io/my-simulator-app:v1 \
+        --os-type linux \
+        --memory 1.5 \
+        --cpu 1 \
+        --environment-variables KAFKA_BROKERS=100.40.40.40:9092
 
 # Display the IP Address
 $ az container list -g acidemo-rg -o table
