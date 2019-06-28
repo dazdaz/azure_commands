@@ -10,6 +10,9 @@ $ azure login
 $ azure account set "<SUBSCRIPTION NAME OR ID>"
 $ azure config mode arm
 
+# Create resource group and set tags
+az group update --name devtoapp --set tags.Details='{"Environment":"dev"}'
+
 # Display all Azure regions
 az account list-locations --query [*].[displayName,name] -o table
 
