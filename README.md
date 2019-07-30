@@ -1,4 +1,4 @@
-# azure-cli2-commands
+# Deployment on Windows
 
 * 13th April 2018 - az 2.0.31 is the latest
 
@@ -6,6 +6,11 @@
 # Installing az
 curl -L https://aka.ms/InstallAzureCli | bash
 
+Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'
+</pre>
+
+# azure-cli2-commands
+<pre>
 $ azure login
 $ azure account set "<SUBSCRIPTION NAME OR ID>"
 $ azure config mode arm
