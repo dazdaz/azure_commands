@@ -374,6 +374,11 @@ $ az sql server ad-admin create --resource-group MyApp --server-name zaalion --d
 az vmss scale --resource-group 'labs-rg' --name labsvmss --new-capacity 4
 ```
 
+# Use a Single Placement Group
+```
+az vmss update -n <vmss name> -g <vmss rg> --set singlePlacementGroup=true
+```
+
 ## Links
 https://github.com/Azure/azure-cli<br>
 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-manage<br>
